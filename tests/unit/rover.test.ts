@@ -1,6 +1,6 @@
 import { PlateauCoordinates } from "../../src/plateau";
 import Rover from "../../src/rover";
-import { Coordinates, Orientation, Movement } from "../../src/types";
+import { Coordinates, Orientation, Command } from "../../src/types";
 
 describe("Rover", () => {
   const plateauCoordinates: PlateauCoordinates = {
@@ -69,7 +69,7 @@ describe("Rover", () => {
         plateauCoordinates
       );
 
-      rover.processMovements(movements as unknown as Movement[]);
+      rover.processMovements(movements as unknown as Command[]);
       const endPositionAndOrientation = rover.getPositionAndOrientation();
 
       expect(endPositionAndOrientation).toEqual(expectedEndPosition);
@@ -115,7 +115,7 @@ describe("Rover", () => {
       );
 
       expect(() => {
-        rover.processMovements(movements as unknown as Movement[]);
+        rover.processMovements(movements as unknown as Command[]);
       }).toThrow("Rover has fallen off the plateau");
     }
   );
